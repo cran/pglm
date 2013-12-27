@@ -1,10 +1,11 @@
-starting.values <- function(family, link, model, Kw, X, y, id, cl, start, other){
+starting.values <- function(family, link, vlink, rn, model, Kw, X, y, id, cl, start, other){
   # the relevant length for the start vector provided by the user is
   # either : 0 (nothing), K (the length of the beta vector or the
   # number of the additional parameter (1 most of the time, but 2 for
   # the negbin model)
   ls <- length(start)
   K <- ncol(X)
+  
   if (family == "binomial"){
     if (model == "pooling"){
       # use Phi^-1(ybar) as starting value for the intercept and 0 for
@@ -85,12 +86,34 @@ starting.values <- function(family, link, model, Kw, X, y, id, cl, start, other)
         # the case where start is null or of length one (the sigma
         # parameter). In these cases, compute the pooling model
         startcl <- cl
+        startcl$start <- NULL
         startcl[c('model', 'method', 'print.level')] <- c('pooling', 'nr', 0)
         glmest <- eval(startcl, parent.frame())
         if (ls == 0){
           if (model == "within") start <- coef(glmest)[Kw]
-          # A REVOIR 
-          else start <- c(coef(glmest), sigma = 0.1)
+          else{
+            if (FALSE){
+              big <- 100
+              init.val <- ifelse(other == "inv", big, 1/big)
+              haty <- lnl.poisson(coef(glmest), y = y, X = X, id = id,
+                                  link = link, model = "pooling")
+              haty <- attr(haty, "fitted.values")
+              print(head(haty))
+              alphait <- y / haty
+              alphai <- tapply(alphait, id, mean)
+              print(head(alphai))
+              print(var(alphai));stop()
+              sigma <- lnl.poisson(c(coef(glmest), init.val), y = y, X = X, id = id,
+                                   link = link, model = model)
+              g <- apply(attr(sigma, "gradient"), 2, sum)
+              g <- g[length(g)]
+              h <- attr(sigma, "hessian")
+              h <- h[nrow(h), nrow(h)]
+              sigma <- init.val - g / h
+              start <- c(coef(glmest), sigma = sigma)
+            }
+            start <- c(coef(glmest), sigma = 1.2)
+          }
         }
         else start <- c(coef(glmest), sigma = start)
       }
@@ -103,7 +126,24 @@ starting.values <- function(family, link, model, Kw, X, y, id, cl, start, other)
       startcl <- cl
       startcl[c('model', 'method', 'print.level', 'family')] <- c('pooling', 'nr', 0, poisson)
       glmest <- eval(startcl, parent.frame())
-      start <- c(coef(glmest), sigma = 0.1)
+      haty <- lnl.poisson(coef(glmest), y = y, X = X, id = id,
+                          link = link, model = "pooling")
+      haty <- attr(haty, "fitted.values")
+      res <- y - haty
+      V <- var(res)
+      E <- mean(y)
+      if (vlink == 'nb1'){
+        alpha <- V / E - 1
+      }
+      if (vlink == 'nb2'){
+        alpha <- V / E^2 - 1 / E
+##         print(alpha)
+##         print(summary(lm(I(res^2/haty) ~ haty )))
+##         print(summary(lm(I(res^2/haty) ~ haty -1)))
+##         alpha <- coef(lm(I(res^2/haty)~ haty - 1)) - 1
+##         print(alpha)
+      }
+      start <- c(coef(glmest), sigma = alpha)
     }
     else{
       if (model != "within") relevant.values <- c(0, K + 1L)

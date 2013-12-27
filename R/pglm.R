@@ -78,11 +78,15 @@ pglm <-  function(formula, data, subset, na.action,
     if (inherits(data, "pdata.frame")) id <- attr(data, "index")[[1]]
     else id <- NULL
   }
-  
-  # compute the starting vgalues
-  start <- starting.values(family, link, model, Kw, X, y, id, cl, start, other)
+
+  # compute the nodes and the weights for the gaussian quadrature
   if (model == "random" && (! family %in% c("poisson", "negbin", "gaussian")))
       rn <- gauss.quad(R, kind = 'hermite')
+  else rn <- NULL
+
+  # compute the starting vgalues
+  start <- starting.values(family, link, vlink, rn, model, Kw, X, y, id, cl, start, other)
+
 
   # call to maxLik with the relevant arguments
   ml <- cl
@@ -98,24 +102,23 @@ pglm <-  function(formula, data, subset, na.action,
 
   args <- list(param = "start",
                y = "y", X = "X", id = "id", model = "model", link = "link",
-               rn = "rn", gradient = FALSE, hessian = FALSE)
-#  if (family == "tobit") args$other <- other
-  if (family %in% c("tobit", "gaussian")) args$other <- "other"
+               rn = "rn")
+  if (family %in% c("tobit", "gaussian", "poisson")) args$other <- "other"
   if (family == "negbin") args$vlink <- "vlink"
+
   thefunc <- paste("function(start) lnl.", family,
                    "(", argschar(args), ")", sep = "")
   ml$logLik <- eval(parse(text = thefunc))
-  args$gradient <- TRUE
   thefunc <- paste("function(start) attr(lnl.", family,
                    "(", argschar(args), "), \"gradient\")", sep = "")
-  ml$grad <- eval(parse(text = thefunc))
-  args$hessian <- TRUE
+#  ml$grad <- eval(parse(text = thefunc))
   thefunc <- paste("function(start) attr(lnl.", family,
                    "(", argschar(args), "), \"hessian\")", sep = "")
-  ml$hess <- eval(parse(text = thefunc))
+#  ml$hess <- eval(parse(text = thefunc))
   
   ml$start <- start
   ml[[1]] <- as.name('maxLik')
+#  if (family == "negbin") ml$activePar <- 14
   result <- eval(ml, parent.frame())
   result[c('call', 'args', 'model')] <- list(cl, args, data)
   result
