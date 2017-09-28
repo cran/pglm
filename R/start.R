@@ -227,6 +227,7 @@ starting.values <- function(family, link, vlink, rn, model, Kw, X, y, id, cl, st
           sigma <- lnl.tobit(coef(pglmest), y = y, X = X, id = id,
                                link = link, model = "pooling", start.sigma = TRUE)
           start <- c(thestart, sd.mu = sigma)
+          print(start)
         }
       }
     }

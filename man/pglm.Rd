@@ -63,8 +63,8 @@ op <- pglm(as.numeric(answer) ~ education + rule,
            method = 'bfgs', index = 'id',  model = "random")
 
 ## a binomial (logit) example
-data('Unions', package = 'pglm')
-anb <- pglm(union ~ wage + exper + rural, Unions, family = binomial('probit'),
+data('UnionWage', package = 'pglm')
+anb <- pglm(union ~ wage + exper + rural, UnionWage, family = binomial('probit'),
             model = "pooling",  method = "bfgs", print.level = 3, R = 5)
 
 ## a gaussian example on unbalanced panel data
@@ -73,11 +73,11 @@ ra <- pglm(mv ~ crim + zn + indus + nox + age + rm, Hedonic, family = gaussian,
            model = "random", print.level = 3, method = "nr", index = "townid")
 
 ## some count data models
-data("PatsRD", package="pglm")
-la <- pglm(pat ~ lag(logr, 0:5) + scisect + logk + factor(year), PatsRD,
-           family = negbin, model = "within", print.level=3, method="nr",
-           index=c('cusip', 'year'))
-la <- pglm(pat ~ lag(logr, 0:5) + scisect + logk + factor(year), PatsRD,
+data("PatentsRDUS", package="pglm")
+la <- pglm(patents ~ lag(log(rd), 0:5) + scisect + log(capital72) + factor(year), PatentsRDUS,
+           family = negbin, model = "within", print.level = 3, method = "nr",
+           index = c('cusip', 'year'))
+la <- pglm(patents ~ lag(log(rd), 0:5) + scisect + log(capital72) + factor(year), PatentsRDUS,
            family = poisson, model = "pooling", index = c("cusip", "year"),
            print.level = 0, method="nr")
 

@@ -10,7 +10,7 @@ negbin <- function(link = c('log'), vlink = c('nb1', 'nb2')){
 }
 
 pglm <-  function(formula, data, subset, na.action,
-                  effect = c('individual','time','twoways'),
+                  effect = c('individual', 'time', 'twoways'),
                   model  = c('random', 'pooling', 'within', 'between'),
                   family, other = NULL, index  = NULL, start = NULL, R = 20, ...){
   dots <- list(...)
@@ -37,12 +37,12 @@ pglm <-  function(formula, data, subset, na.action,
   # Check whether data is a pdata.frame and if not create it ; ignore
   # this step if model = pooling and if index = NULL so that ordinary
   # glm models can be fitted
-  if (model != "pooling" | !is.null(index)){
+  if (model != "pooling" | ! is.null(index)){
     if (inherits(data, "pdata.frame") && !is.null(index))
       warning("the index argument is ignored because data is a pdata.frame")
     if (!inherits(data, "pdata.frame")) data <- pdata.frame(data, index)
     # Create a Formula object if necessary
-    if (!inherits(formula, "pFormula")) formula <- pFormula(formula)
+    if (! inherits(formula, "pFormula")) formula <- pFormula(formula)
   }
   
   # eval the model.frame
@@ -87,7 +87,6 @@ pglm <-  function(formula, data, subset, na.action,
   # compute the starting vgalues
   start <- starting.values(family, link, vlink, rn, model, Kw, X, y, id, cl, start, other)
 
-
   # call to maxLik with the relevant arguments
   ml <- cl
   m <- match(c("print.level", "ftol", "tol", "reltol",
@@ -97,7 +96,7 @@ pglm <-  function(formula, data, subset, na.action,
 
   argschar <- function(args){
     paste(as.character(names(args)), as.character(args),
-          sep="=", collapse=",")
+          sep= "=", collapse= ",")
   }
 
   args <- list(param = "start",
