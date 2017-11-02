@@ -1,5 +1,5 @@
 lnl.binomial <- function(param, y, X, id, model, link, rn, start.sigma = FALSE){
-
+    
   if (link == 'probit'){
     F <- pnorm
     f <- dnorm
@@ -66,7 +66,7 @@ lnl.binomial <- function(param, y, X, id, model, link, rn, start.sigma = FALSE){
     H <- Reduce("+", Hr) / sqrt(pi) - crossprod(apply(gradi, 2, tapply, id, sum))
   }                  
   attr(lnL, 'gradient') <- gradi
-  attr(lnL, 'hessian') <-   H
+    attr(lnL, 'hessian') <-   H
   lnL
 }  
 

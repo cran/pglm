@@ -1,13 +1,13 @@
-62aba5beb53de2f9d5c19c35d8a3bcec *DESCRIPTION
+428a028a96549e8df1aff8399c99cd3f *DESCRIPTION
 1784d76557963fc4d9f49641231f9232 *NAMESPACE
 12457b22255a59ce416a8ef7a2094f02 *NEWS
-95f53318e05e65d345e4a14dc9fc1802 *R/lnl.binomial.R
+766ca2962855fce3469f071e9ba5220a *R/lnl.binomial.R
 29dcbb92a4bf13618d1c0cb79e77b424 *R/lnl.gaussian.R
 f061e0a7ed21914e030a2161ff24077b *R/lnl.negbin.R
 edc512703090bab2aac2844553a58101 *R/lnl.ordinal.R
 fc6bbd2d20682330c8a6adc742c193ff *R/lnl.poisson.R
 0d2e55c0aaa47bb58fad7af12013e150 *R/lnl.tobit.R
-24628cf9ba024e35ccefee18e6e446ac *R/pglm.R
+7a331b573ad4469968f45207a318ee3f *R/pglm.R
 ecc2a576b98ef08931d49c427f9dadff *R/start.R
 be727805f1a9c83b477db40f9482c8c0 *data/Fairness.rda
 1bb026d2dedbdef57402116ad64e0c27 *data/HealthIns.rda
