@@ -34,7 +34,7 @@
   }
 }
 \source{
-    Journal of Applied Econometrics data archive : \url{http://jae.wiley.com/jae/}.
+    Journal of Applied Econometrics data archive : \url{http://qed.econ.queensu.ca/jae/}.
 
 }
 \references{

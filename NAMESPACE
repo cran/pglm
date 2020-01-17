@@ -1,6 +1,6 @@
 export(pglm, ordinal, negbin)
 importFrom("statmod", "gauss.quad")
-import("maxLik", "plm")
+import("maxLik", "plm", "Formula")
 importFrom("stats", "coef", "deviance", "df.residual", "dnorm",
              "model.matrix", "model.response", "pnorm", "poisson",
              "qnorm", "resid", "sd", "var")
