@@ -62,7 +62,7 @@ op <- pglm(as.numeric(answer) ~ education + rule,
            family = ordinal('probit'), R = 5, print.level = 3,
            method = 'bfgs', index = 'id',  model = "random")
 
-## a binomial (logit) example
+## a binomial (probit) example
 data('UnionWage', package = 'pglm')
 anb <- pglm(union ~ wage + exper + rural, UnionWage, family = binomial('probit'),
             model = "pooling",  method = "bfgs", print.level = 3, R = 5)
