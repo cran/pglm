@@ -1,7 +1,7 @@
 \name{PatentsRDUS}
 \docType{data}
 \alias{PatentsRDUS}
-\title{Dynamic Relation Between Patents and R\&d }
+\title{Dynamic Relation Between Patents and R&d }
 \description{
   yearly observations of 346 production units
 
@@ -31,7 +31,7 @@
     Hall, Browyn,  Zvi   Griliches and  Jerry  Hausman (1986) \dQuote{Patents and R and D: Is there a Lag?}, \emph{International Economic Review}, \bold{27}, 265-283.
 }
 \references{
-      \url{http://cameron.econ.ucdavis.edu/racd/racddata.html}, chapter 9..
+      \url{https://cameron.econ.ucdavis.edu/racd/racddata.html}, chapter 9..
 }
 
 \keyword{datasets}

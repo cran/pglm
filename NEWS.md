@@ -1,3 +1,7 @@
+# pglm 0.2-4
+
+* \& replaced by & in two man pages
+
 # pglm 0.2-3
 
 * missing sqrt 2 for binomial models (fixed thank's to Garett Glasgow)

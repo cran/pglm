@@ -36,7 +36,7 @@
 
 }
 \references{
-      \url{http://cameron.econ.ucdavis.edu/musbook/mus.html}.
+      \url{https://cameron.econ.ucdavis.edu/musbook/mus.html}.
 }
 
 \keyword{datasets}

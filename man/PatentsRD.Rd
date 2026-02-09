@@ -1,7 +1,7 @@
 \name{PatentsRD}
 \docType{data}
 \alias{PatentsRD}
-\title{Patents, R\&d and Technological Spillovers for a Panel of Firms }
+\title{Patents, R&d and Technological Spillovers for a Panel of Firms }
 \description{
   annual observations of  181 firms from 1983  to 1991
 
@@ -27,7 +27,7 @@
   }
 }
 \source{
-    Cincer, Michele (1997) \dQuote{Patents, R \& D and technological spillovers at the firm level : some evidence from econometric count models for panel data}, \emph{Journal of Applied Econometrics}, \bold{12(3)}, may--june, 265--280.
+    Cincer, Michele (1997) \dQuote{Patents, R & D and technological spillovers at the firm level : some evidence from econometric count models for panel data}, \emph{Journal of Applied Econometrics}, \bold{12(3)}, may--june, 265--280.
 }
 \references{
       Journal of Applied Econometrics data archive : \url{http://qed.econ.queensu.ca/jae/}.

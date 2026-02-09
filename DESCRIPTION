@@ -1,6 +1,6 @@
 Package: pglm
-Version: 0.2-3
-Date: 2021-07-19
+Version: 0.2-4
+Date: 2026-02-06
 Title: Panel Generalized Linear Models
 Authors@R: person("Yves", "Croissant", role = c("aut", "cre"), email = "yves.croissant@univ-reunion.fr")
 Depends: R (>= 2.10), maxLik, plm
@@ -15,8 +15,8 @@ Description: Estimation of panel models for glm-like models:
 License: GPL (>= 2)
 URL: https://cran.r-project.org/package=pglm
 NeedsCompilation: no
-Packaged: 2021-07-19 18:01:36 UTC; yves
+Packaged: 2026-02-06 14:30:26 UTC; yves
 Author: Yves Croissant [aut, cre]
 Maintainer: Yves Croissant <yves.croissant@univ-reunion.fr>
 Repository: CRAN
-Date/Publication: 2021-07-19 18:10:02 UTC
+Date/Publication: 2026-02-09 07:20:02 UTC
